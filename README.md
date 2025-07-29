@@ -1,6 +1,6 @@
 # 🧠 SQL for Exploratory Data Analysis
 ---
-📊 **Exploratory Data Analysis (EDA)** menggunakan **SQL** pada dataset penjualan dari Blinkit — sebuah platform e-commerce kebutuhan sehari-hari.
+📊 **Exploratory Data Analysis (EDA)** menggunakan **SQL** pada dataset penjualan dari Blinkit sebuah platform e-commerce kebutuhan sehari-hari.
 
 Repositori ini berisi kumpulan query SQL untuk menganalisis berbagai aspek bisnis seperti:
 - 📦 Kinerja produk dan kategori
@@ -13,17 +13,13 @@ Repositori ini berisi kumpulan query SQL untuk menganalisis berbagai aspek bisni
 - **SQL Server Management Studio (SSMS)**
 - Dataset: [Blinkit Sales Dataset – Kaggle](https://www.kaggle.com/datasets/akxiit/blinkit-sales-dataset)
 
-### 📁 Struktur Folder
-- `sql_queries/` – Kumpulan query SQL berdasarkan topik analisis
-- `markdown_reports/` – Ringkasan hasil dalam format Markdown
-
 ### 📌 Tujuan
 Mendemonstrasikan bagaimana SQL digunakan untuk eksplorasi data dalam konteks bisnis nyata:
 - Mencari insight untuk pengambilan keputusan
 - Mengukur KPI penting
 - Menjawab pertanyaan-pertanyaan bisnis menggunakan data
 
-## Product and Brand Analysis
+## 📦 Kinerja produk dan kategori
 ---
 1. Menampilkan kategori produk yang menghasilkan pendapatan tertinggi dan terendah
 ```sql
@@ -84,13 +80,46 @@ SELECT TOP 5 * FROM sales_product
 ORDER BY total_revenue DESC
 ```
 **Output**
-| Product Name    | Category        | Total Revenue | Total Item |
+| product_name    | category        | total_revenue | total_item |
 |----------------|------------------|----------------|-------------|
 | Vitamins       | Pharmacy         | 26,082,201     | 380         |
 | Pet Treats     | Pet Care         | 20,469,545     | 473         |
 | Toilet Cleaner | Household Care   | 19,983,748     | 430         |
 | Cough Syrup    | Pharmacy         | 17,338,101     | 373         |
 | Dish Soap      | Household Care   | 15,969,544     | 397         |
+
+| product_name    | category        | total_revenue | total_item |
+|------------------|------------------------|-----------|--------|
+| Lemonade         | Cold Drinks & Juices   | 1,497,780 | 45     |
+| Cereal           | Dairy & Breakfast      | 1,762,550 | 86     |
+| Rice             | Grocery & Staples      | 2,013,980 | 109    |
+| Spinach          | Fruits & Vegetables    | 2,523,360 | 40     |
+| Instant Noodles  | Instant & Frozen Food  | 3,280,164 | 73     |
+
+**Insights:**
+- 
+- 
+
+
+3. Brand 
+```sql
+SELECT TOP 5
+    p.brand,
+    SUM(oi.unit_price * oi.quantity) AS total_revenue
+FROM products AS p
+JOIN order_items AS oi
+ON p.product_id = oi.product_id
+GROUP BY p.brand
+ORDER BY total_revenue DESC
+```
+**Output**
+| Brand        | Revenue   |
+|----------------|-----------|
+| Karnik PLC     | 6,521,270 |
+| Mandal-Kar     | 5,646,465 |
+| Roy-Char       | 5,518,294 |
+| Sundaram Inc   | 5,183,035 |
+| Gole-Doshi     | 5,179,096 |
 
 3. Sentimen
 ```sql
@@ -212,25 +241,8 @@ ORDER BY negative_feedback DESC
 | Vitamins         | 95       |
 | Dish Soap        | 94       |
 
-7. Brand 
-```sql
-SELECT TOP 5
-    p.brand,
-    SUM(oi.unit_price * oi.quantity) AS total_revenue
-FROM products AS p
-JOIN order_items AS oi
-ON p.product_id = oi.product_id
-GROUP BY p.brand
-ORDER BY total_revenue DESC
-```
-**Output**
-| Brand        | Revenue   |
-|----------------|-----------|
-| Karnik PLC     | 6,521,270 |
-| Mandal-Kar     | 5,646,465 |
-| Roy-Char       | 5,518,294 |
-| Sundaram Inc   | 5,183,035 |
-| Gole-Doshi     | 5,179,096 |
+
+
 
 8. New Customer
 ```sql
