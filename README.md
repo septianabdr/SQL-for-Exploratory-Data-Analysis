@@ -1,9 +1,27 @@
-# SQL for Exploratory Data Analysis
+# 🧠 SQL for Exploratory Data Analysis
 ---
-SQL for Data Exploratory: BlinkIt Sales Dataset
-Repositori ini memuat eksporasi data Blinkit menngunakan software SSMS (SQL Server Management Studio)
+📊 **Exploratory Data Analysis (EDA)** menggunakan **SQL** pada dataset penjualan dari Blinkit — sebuah platform e-commerce kebutuhan sehari-hari.
 
-Dataset [Blinkit grocery](https://www.kaggle.com/datasets/akxiit/blinkit-sales-dataset)
+Repositori ini berisi kumpulan query SQL untuk menganalisis berbagai aspek bisnis seperti:
+- 📦 Kinerja produk dan kategori
+- 👥 Segmentasi pelanggan
+- 🚚 Performa pengiriman
+- 📈 Tren penjualan bulanan
+- 💬 Umpan balik pelanggan
+
+### 🛠 Tools
+- **SQL Server Management Studio (SSMS)**
+- Dataset: [Blinkit Sales Dataset – Kaggle](https://www.kaggle.com/datasets/akxiit/blinkit-sales-dataset)
+
+### 📁 Struktur Folder
+- `sql_queries/` – Kumpulan query SQL berdasarkan topik analisis
+- `markdown_reports/` – Ringkasan hasil dalam format Markdown
+
+### 📌 Tujuan
+Mendemonstrasikan bagaimana SQL digunakan untuk eksplorasi data dalam konteks bisnis nyata:
+- Mencari insight untuk pengambilan keputusan
+- Mengukur KPI penting
+- Menjawab pertanyaan-pertanyaan bisnis menggunakan data
 
 ## Product and Brand Analysis
 ---
@@ -248,3 +266,8 @@ ORDER BY new_customers DESC
 | 2023-03   | 21             |
 | 2023-07   | 19             |
 | 2024-11   | 3              |
+
+
+---
+
+Feel free to fork, clone, or contribute! 🚀
