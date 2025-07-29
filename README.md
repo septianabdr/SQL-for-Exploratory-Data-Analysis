@@ -33,10 +33,10 @@ ORDER BY 2 DESC
 ```sql
 WITH sales_product AS(
     SELECT
-	    p.product_name,
+	p.product_name,
         p.category AS product_category,
-	    SUM(quantity * price) AS total_revenue,
-	    SUM(quantity) AS total_item
+	SUM(quantity * price) AS total_revenue,
+	SUM(quantity) AS total_item
     FROM orders AS o
     INNER JOIN order_items AS oi
     ON o.order_id = oi.order_id
@@ -80,3 +80,40 @@ GROUP BY sentiment
 | Negative  | 21.56          |
 | Neutral   | 27.96          |
 | Positive  | 50.48          |
+
+4. Barang yang rusak
+```sql
+WITH stock_product AS(
+SELECT 
+    p.product_name,
+    p.category,
+    p.shelf_life_days,
+    p.min_stock_level,
+    p.max_stock_level,
+    SUM(i.stock_received) AS total_stock_received,
+    SUM(i.damaged_stock) AS total_damaged_stock
+FROM inventory AS i
+JOIN products AS p
+ON i.product_id = p.product_id
+GROUP BY p.product_name, p.category, p.shelf_life_days, p.min_stock_level, p.max_stock_level
+)
+SELECT category, SUM(total_damaged_stock) AS damaged_stock FROM stock_product
+GROUP BY category
+ORDER BY damaged_stock DESC
+```
+**Output**
+| Category                 | Total Damaged Stock  |
+|--------------------------|-------------|
+| Dairy & Breakfast        | 8,890       |
+| Household Care           | 8,210       |
+| Snacks & Munchies        | 8,144       |
+| Fruits & Vegetables      | 8,120       |
+| Pet Care                 | 7,528       |
+| Personal Care            | 7,524       |
+| Pharmacy                 | 7,366       |
+| Grocery & Staples        | 7,144       |
+| Cold Drinks & Juices     | 6,604       |
+| Instant & Frozen Food    | 5,910       |
+| Baby Care                | 4,828       |
+
+5. 
