@@ -1,6 +1,6 @@
 # SQL-for-Exploratory-Data-Analysis
 SQL for Data Exploratory: BlinkIt Sales Dataset
-Dataset[Blinkit grocery](https://www.kaggle.com/datasets/akxiit/blinkit-sales-dataset)
+Dataset [Blinkit grocery](https://www.kaggle.com/datasets/akxiit/blinkit-sales-dataset)
 
 ```sql
 WITH sales_category AS(
