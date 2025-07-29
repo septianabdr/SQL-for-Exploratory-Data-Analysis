@@ -5,7 +5,6 @@
 Repositori ini berisi kumpulan query SQL untuk menganalisis berbagai aspek bisnis seperti:
 - 📦 Kinerja produk dan kategori
 - 👥 Segmentasi pelanggan
-- 🚚 Performa pengiriman
 - 📈 Tren penjualan bulanan
 - 💬 Umpan balik pelanggan
 
@@ -61,7 +60,7 @@ TOP 5 kategori produk yang mendapatkan pendapatan tertinggi
 - 
 - 
 
-2. Produk paling laris
+2. Produk terlaris berdasarkan kuantitas penjualan
 ```sql
 WITH sales_product AS(
     SELECT
@@ -101,7 +100,7 @@ ORDER BY total_revenue DESC
 - 
 
 
-3. Brand 
+3. Brand terlaris dalam penjualan
 ```sql
 SELECT TOP 5
     p.brand,
@@ -121,30 +120,8 @@ ORDER BY total_revenue DESC
 | Sundaram Inc   | 5,183,035 |
 | Gole-Doshi     | 5,179,096 |
 
-3. Sentimen
-```sql
-WITH rating_new AS(
-    SELECT 
-        rating,
-        CASE 
-            WHEN rating BETWEEN 1 AND 2 THEN 'Negative'
-            WHEN rating BETWEEN 4 AND 5 THEN 'Positive'
-            WHEN rating = 3 THEN 'Neutral'
-        END sentiment
-    FROM customer_feedback
-)
-SELECT 
-    sentiment,
-    COUNT(*) * 100.0 / (SELECT COUNT(*) FROM customer_feedback) AS percentage
-FROM rating_new
-GROUP BY sentiment
-```
-**Output**
-| Sentiment | Percentage (%) |
-|-----------|----------------|
-| Negative  | 21.56          |
-| Neutral   | 27.96          |
-| Positive  | 50.48          |
+**Insights:**
+- 
 
 4. Barang yang rusak
 ```sql
@@ -181,7 +158,31 @@ ORDER BY damaged_stock DESC
 | Instant & Frozen Food    | 5,910       |
 | Baby Care                | 4,828       |
 
-5. 10 customers
+**Insight:**
+- 
+
+## 👥 Segmentasi pelanggan
+5. Customer
+```sql
+SELECT 
+    customer_segment,
+    COUNT(*) AS total_customer
+FROM customers
+GROUP BY customer_segment
+```
+**Output**
+| customer_segment | toal_customer |
+|------------------|-------|
+| New              | 628   |
+| Premium          | 633   |
+| Inactive         | 600   |
+| Regular          | 639   |
+
+**Insight:**
+- 
+
+
+6. 10 customers
 ```sql
 SELECT TOP 10
     c.customer_id,
@@ -210,41 +211,11 @@ ORDER BY total_revenue DESC
 | 13760839 | Anvi Savant      | yashvi72@example.org               | 911399         |
 | 12832151 | Ekavir Bhalla    | ksehgal@example.net                | 884111         |
 
-6. Product Feedback negative
-```sql
-SELECT TOP 5
-    p.product_name,
-    COUNT(*) AS negative_feedback
-FROM customer_feedback AS cf
-JOIN order_items AS oi
-ON cf.order_id = oi.order_id
-JOIN products AS p
-ON oi.product_id = p.product_id
-WHERE cf.sentiment = 'Negative'
-GROUP BY p.product_name
-ORDER BY negative_feedback DESC
-```
-**Output**
-| product         | negative_feedback |
-|------------------|----------|
-| Pet Treats       | 44       |
-| Baby Wipes       | 41       |
-| Lotion           | 41       |
-| Dish Soap        | 39       |
-| Toilet Cleaner   | 38       |
-**Output**
-| product         | positive_feedback |
-|------------------|----------|
-| Pet Treats       | 121      |
-| Toilet Cleaner   | 110      |
-| Cough Syrup      | 108      |
-| Vitamins         | 95       |
-| Dish Soap        | 94       |
+**Insight:**
+- 
 
-
-
-
-8. New Customer
+## 📈 Tren penjualan bulanan
+7. New Customer
 ```sql
 SELECT 
     FORMAT(registration_date, 'yyyy-MM') AS month,
@@ -279,6 +250,73 @@ ORDER BY new_customers DESC
 | 2023-07   | 19             |
 | 2024-11   | 3              |
 
+**Insight:**
+- 
+
+## 💬 Umpan balik pelanggan
+---
+8. Sentimen
+```sql
+WITH rating_new AS(
+    SELECT 
+        rating,
+        CASE 
+            WHEN rating BETWEEN 1 AND 2 THEN 'Negative'
+            WHEN rating BETWEEN 4 AND 5 THEN 'Positive'
+            WHEN rating = 3 THEN 'Neutral'
+        END sentiment
+    FROM customer_feedback
+)
+SELECT 
+    sentiment,
+    COUNT(*) * 100.0 / (SELECT COUNT(*) FROM customer_feedback) AS percentage
+FROM rating_new
+GROUP BY sentiment
+```
+**Output**
+| Sentiment | Percentage (%) |
+|-----------|----------------|
+| Negative  | 21.56          |
+| Neutral   | 27.96          |
+| Positive  | 50.48          |
+
+**Insight:**
+-
+
+9. Product Feedback negative
+```sql
+SELECT TOP 5
+    p.product_name,
+    COUNT(*) AS negative_feedback
+FROM customer_feedback AS cf
+JOIN order_items AS oi
+ON cf.order_id = oi.order_id
+JOIN products AS p
+ON oi.product_id = p.product_id
+WHERE cf.sentiment = 'Negative'
+GROUP BY p.product_name
+ORDER BY negative_feedback DESC
+```
+**Output**
+| product         | negative_feedback |
+|------------------|----------|
+| Pet Treats       | 44       |
+| Baby Wipes       | 41       |
+| Lotion           | 41       |
+| Dish Soap        | 39       |
+| Toilet Cleaner   | 38       |
+
+
+| product         | positive_feedback |
+|------------------|----------|
+| Pet Treats       | 121      |
+| Toilet Cleaner   | 110      |
+| Cough Syrup      | 108      |
+| Vitamins         | 95       |
+| Dish Soap        | 94       |
+
+**Insight:**
+-
 
 ---
 
