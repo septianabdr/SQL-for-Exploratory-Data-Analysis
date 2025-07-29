@@ -7,7 +7,7 @@ Dataset [Blinkit grocery](https://www.kaggle.com/datasets/akxiit/blinkit-sales-d
 
 ## Product and Brand Analysis
 ---
-1. Category paling laris
+1. Menampilkan kategori produk yang menghasilkan pendapatan tertinggi dan terendah
 ```sql
 WITH sales_category AS(
     SELECT
@@ -24,14 +24,28 @@ WITH sales_category AS(
 SELECT TOP 5 * FROM sales_category
 ORDER BY 2 DESC
 ```
-**Output**
-| Category              | Total Revenue | Total Items |
+### **Output:**
+TOP 5 kategori produk yang mendapatkan pendapatan tertinggi
+| category              | total_revenue | total_item |
 |-----------------------|---------------|--------------|
 | Fruits & Vegetables   | 53,955,458    | 966          |
 | Personal Care         | 35,018,297    | 887          |
 | Grocery & Staples     | 33,853,141    | 895          |
 | Cold Drinks & Juices  | 31,599,928    | 758          |
 | Instant & Frozen Food | 29,209,697    | 742          |
+
+TOP 5 kategori produk yang mendapatkan pendapatan tertinggi
+| category               | total_revenue    | total_orders |
+|------------------------|------------|--------|
+| Instant & Frozen Food  | 29,209,697 | 742    |
+| Cold Drinks & Juices   | 31,599,928 | 758    |
+| Grocery & Staples      | 33,853,141 | 895    |
+| Baby Care              | 34,822,718 | 655    |
+| Personal Care          | 35,018,297 | 887    |
+
+**Insights:**
+- 
+- 
 
 2. Produk paling laris
 ```sql
