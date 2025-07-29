@@ -1,16 +1,19 @@
-### SQL for Exploratory Data Analysis
+# SQL for Exploratory Data Analysis
 ---
 SQL for Data Exploratory: BlinkIt Sales Dataset
+Repositori ini memuat eksporasi data Blinkit menngunakan software SSMS (SQL Server Management Studio)
 
 Dataset [Blinkit grocery](https://www.kaggle.com/datasets/akxiit/blinkit-sales-dataset)
 
+## Product and Brand Analysis
+---
 1. Category paling laris
 ```sql
 WITH sales_category AS(
-    SELECT TOP 5
-	    category,
-	    SUM(quantity * price) AS total_revenue,
-	    SUM(quantity) AS total_item
+    SELECT
+	category,
+	SUM(quantity * price) AS total_revenue,
+	SUM(quantity) AS total_item
     FROM orders AS o
     INNER JOIN order_items AS oi
     ON o.order_id = oi.order_id
@@ -18,7 +21,7 @@ WITH sales_category AS(
     ON oi.product_id = p.product_id
     GROUP BY category
 )
-SELECT * FROM sales_category
+SELECT TOP 5 * FROM sales_category
 ORDER BY 2 DESC
 ```
 **Output**
