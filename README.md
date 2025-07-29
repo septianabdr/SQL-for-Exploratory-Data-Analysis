@@ -56,12 +56,12 @@ TOP 5 kategori produk yang mendapatkan pendapatan tertinggi
 | Baby Care              | 34,822,718 | 655    |
 | Personal Care          | 35,018,297 | 887    |
 
-**📊 Insights:**
-* 🔝 **Personal Care** mencetak pendapatan tertinggi (Rp 35 juta+) dan volume item tinggi (**887 produk**), menunjukkan konsistensi dalam kontribusi terhadap pendapatan.
-* 🍼 **Baby Care** tidak termasuk dalam 5 besar dari sisi jumlah item, namun berhasil masuk top 5 dari sisi **pendapatan & jumlah pesanan**, menandakan **harga per produk relatif tinggi**.
-* 🥬 **Fruits & Vegetables** memiliki **pendapatan tertinggi secara keseluruhan** dan juga jumlah item terbanyak (**966 item**), menunjukkan **keragaman produk tinggi**, meskipun harga per item bisa jadi lebih rendah.
-* ❄️ **Instant & Frozen Food** meskipun jumlah item lebih sedikit, tetap memiliki performa tinggi dalam jumlah pesanan dan pendapatan, menunjukkan **permintaan stabil**.
-* 🥤 **Cold Drinks & Juices** konsisten di kedua peringkat — memperkuat bahwa produk ini adalah kebutuhan rutin dengan **rotasi cepat**.
+📊 **Insights:**
+- 🔝 **Personal Care** mencetak pendapatan tertinggi (Rp 35 juta+) dan volume item tinggi (**887 produk**), menunjukkan konsistensi dalam kontribusi terhadap pendapatan.
+- 🍼 **Baby Care** tidak termasuk dalam 5 besar dari sisi jumlah item, namun berhasil masuk top 5 dari sisi **pendapatan & jumlah pesanan**, menandakan **harga per produk relatif tinggi**.
+- 🥬 **Fruits & Vegetables** memiliki **pendapatan tertinggi secara keseluruhan** dan juga jumlah item terbanyak (**966 item**), menunjukkan **keragaman produk tinggi**, meskipun harga per item bisa jadi lebih rendah.
+- ❄️ **Instant & Frozen Food** meskipun jumlah item lebih sedikit, tetap memiliki performa tinggi dalam jumlah pesanan dan pendapatan, menunjukkan **permintaan stabil**.
+- 🥤 **Cold Drinks & Juices** konsisten di kedua peringkat — memperkuat bahwa produk ini adalah kebutuhan rutin dengan **rotasi cepat**.
 
 2. Produk terlaris berdasarkan kuantitas penjualan
 ```sql
