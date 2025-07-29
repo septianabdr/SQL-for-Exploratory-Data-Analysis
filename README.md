@@ -56,9 +56,12 @@ TOP 5 kategori produk yang mendapatkan pendapatan tertinggi
 | Baby Care              | 34,822,718 | 655    |
 | Personal Care          | 35,018,297 | 887    |
 
-**Insights:**
-- 
-- 
+**📊 Insights:**
+* 🔝 **Personal Care** mencetak pendapatan tertinggi (Rp 35 juta+) dan volume item tinggi (**887 produk**), menunjukkan konsistensi dalam kontribusi terhadap pendapatan.
+* 🍼 **Baby Care** tidak termasuk dalam 5 besar dari sisi jumlah item, namun berhasil masuk top 5 dari sisi **pendapatan & jumlah pesanan**, menandakan **harga per produk relatif tinggi**.
+* 🥬 **Fruits & Vegetables** memiliki **pendapatan tertinggi secara keseluruhan** dan juga jumlah item terbanyak (**966 item**), menunjukkan **keragaman produk tinggi**, meskipun harga per item bisa jadi lebih rendah.
+* ❄️ **Instant & Frozen Food** meskipun jumlah item lebih sedikit, tetap memiliki performa tinggi dalam jumlah pesanan dan pendapatan, menunjukkan **permintaan stabil**.
+* 🥤 **Cold Drinks & Juices** konsisten di kedua peringkat — memperkuat bahwa produk ini adalah kebutuhan rutin dengan **rotasi cepat**.
 
 2. Produk terlaris berdasarkan kuantitas penjualan
 ```sql
@@ -78,7 +81,8 @@ WITH sales_product AS(
 SELECT TOP 5 * FROM sales_product
 ORDER BY total_revenue DESC
 ```
-**Output**
+### **Output**
+TOP 5 produk terlaris dalam pendapatan tertinggi
 | product_name    | category        | total_revenue | total_item |
 |----------------|------------------|----------------|-------------|
 | Vitamins       | Pharmacy         | 26,082,201     | 380         |
@@ -87,6 +91,7 @@ ORDER BY total_revenue DESC
 | Cough Syrup    | Pharmacy         | 17,338,101     | 373         |
 | Dish Soap      | Household Care   | 15,969,544     | 397         |
 
+TOP 5 produk terlaris dalam pendapatan terendah
 | product_name    | category        | total_revenue | total_item |
 |------------------|------------------------|-----------|--------|
 | Lemonade         | Cold Drinks & Juices   | 1,497,780 | 45     |
@@ -95,12 +100,12 @@ ORDER BY total_revenue DESC
 | Spinach          | Fruits & Vegetables    | 2,523,360 | 40     |
 | Instant Noodles  | Instant & Frozen Food  | 3,280,164 | 73     |
 
-**Insights:**
+**📊 Insights:**
 - 
 - 
 
 
-3. Brand terlaris dalam penjualan
+3. Brand terlaris dalam pendapatan
 ```sql
 SELECT TOP 5
     p.brand,
@@ -111,8 +116,8 @@ ON p.product_id = oi.product_id
 GROUP BY p.brand
 ORDER BY total_revenue DESC
 ```
-**Output**
-| Brand        | Revenue   |
+### **Output**
+| brand        | total_revenue   |
 |----------------|-----------|
 | Karnik PLC     | 6,521,270 |
 | Mandal-Kar     | 5,646,465 |
@@ -120,10 +125,10 @@ ORDER BY total_revenue DESC
 | Sundaram Inc   | 5,183,035 |
 | Gole-Doshi     | 5,179,096 |
 
-**Insights:**
+**📊 Insights:**
 - 
 
-4. Barang yang rusak
+4. Stok barang yang mengalami kerusakan di gudang
 ```sql
 WITH stock_product AS(
 SELECT 
@@ -143,8 +148,8 @@ SELECT category, SUM(total_damaged_stock) AS damaged_stock FROM stock_product
 GROUP BY category
 ORDER BY damaged_stock DESC
 ```
-**Output**
-| Category                 | Total Damaged Stock  |
+### **Output**
+| category                 | total_damaged_stock  |
 |--------------------------|-------------|
 | Dairy & Breakfast        | 8,890       |
 | Household Care           | 8,210       |
@@ -158,11 +163,12 @@ ORDER BY damaged_stock DESC
 | Instant & Frozen Food    | 5,910       |
 | Baby Care                | 4,828       |
 
-**Insight:**
+**📊 Insight:**
 - 
 
 ## 👥 Segmentasi pelanggan
-5. Customer
+---
+5. Jumlah customer berdasarkan segmentasi pelanggan
 ```sql
 SELECT 
     customer_segment,
@@ -170,7 +176,7 @@ SELECT
 FROM customers
 GROUP BY customer_segment
 ```
-**Output**
+### **Output**
 | customer_segment | toal_customer |
 |------------------|-------|
 | New              | 628   |
@@ -178,11 +184,11 @@ GROUP BY customer_segment
 | Inactive         | 600   |
 | Regular          | 639   |
 
-**Insight:**
+**📊 Insight:**
 - 
 
 
-6. 10 customers
+6. Customer yang sering berbelanja
 ```sql
 SELECT TOP 10
     c.customer_id,
@@ -197,25 +203,26 @@ ON o.order_id= oi.order_id
 GROUP BY c.customer_name, c.customer_id, c.email
 ORDER BY total_revenue DESC
 ```
-**Output**
-| ID       | Name             | Email                              | Customer Code |
+### **Output**
+| customer_id | customer_name | email                              | total_revenue  |
 |----------|------------------|------------------------------------|----------------|
-| 25128143 | Odika Kannan     | kondaadya@example.org              | 1053339        |
-| 77869660 | Nidhi Sha        | ewali@example.org                  | 1011575        |
-| 4597433  | Lipika Kumer     | faras46@example.org                | 955369         |
-| 33331259 | Leena Deol       | nitesh33@example.com               | 940377         |
-| 14472401 | Ayaan Rege       | dubeyekanta@example.com            | 927573         |
-| 85561151 | Zinal Dhawan     | gulatiedhitha@example.org          | 926859         |
-| 22800586 | Jacob Lad        | ramakrishnanchandresh@example.net  | 923724         |
-| 34668988 | Wishi Varughese  | damyanti67@example.net             | 916073         |
-| 13760839 | Anvi Savant      | yashvi72@example.org               | 911399         |
-| 12832151 | Ekavir Bhalla    | ksehgal@example.net                | 884111         |
+| 25128143 | Odika Kannan     | kondaadya@example.org              | 1,053,339      |
+| 77869660 | Nidhi Sha        | ewali@example.org                  | 1,011,575      |
+| 4597433  | Lipika Kumer     | faras46@example.org                | 955,369        |
+| 33331259 | Leena Deol       | nitesh33@example.com               | 940,377        |
+| 14472401 | Ayaan Rege       | dubeyekanta@example.com            | 927,573        |
+| 85561151 | Zinal Dhawan     | gulatiedhitha@example.org          | 926,859        |
+| 22800586 | Jacob Lad        | ramakrishnanchandresh@example.net  | 923,724        |
+| 34668988 | Wishi Varughese  | damyanti67@example.net             | 916,073        |
+| 13760839 | Anvi Savant      | yashvi72@example.org               | 911,399        |
+| 12832151 | Ekavir Bhalla    | ksehgal@example.net                | 884,111        |
 
-**Insight:**
+**📊 Insight:**
 - 
 
 ## 📈 Tren penjualan bulanan
-7. New Customer
+---
+7. Customer baru dalam setiap bulan
 ```sql
 SELECT 
     FORMAT(registration_date, 'yyyy-MM') AS month,
@@ -225,8 +232,8 @@ WHERE customer_segment = 'New'
 GROUP BY FORMAT(registration_date, 'yyyy-MM')
 ORDER BY new_customers DESC
 ```
-**Output**
-| Month     | New Customers |
+### **Output**
+| month     | new_customers |
 |-----------|----------------|
 | 2024-03   | 47             |
 | 2023-12   | 40             |
@@ -250,12 +257,12 @@ ORDER BY new_customers DESC
 | 2023-07   | 19             |
 | 2024-11   | 3              |
 
-**Insight:**
+**📊 Insight:**
 - 
 
 ## 💬 Umpan balik pelanggan
 ---
-8. Sentimen
+8. Analisis berdasarkan sentimen pelanggan
 ```sql
 WITH rating_new AS(
     SELECT 
@@ -273,17 +280,17 @@ SELECT
 FROM rating_new
 GROUP BY sentiment
 ```
-**Output**
-| Sentiment | Percentage (%) |
+### **Output**
+| sentiment | percentage |
 |-----------|----------------|
 | Negative  | 21.56          |
 | Neutral   | 27.96          |
 | Positive  | 50.48          |
 
-**Insight:**
+**📊 Insight:**
 -
 
-9. Product Feedback negative
+9. Product yang mendapatkan umpan balik positif dan umpan balik negatif
 ```sql
 SELECT TOP 5
     p.product_name,
@@ -297,16 +304,8 @@ WHERE cf.sentiment = 'Negative'
 GROUP BY p.product_name
 ORDER BY negative_feedback DESC
 ```
-**Output**
-| product         | negative_feedback |
-|------------------|----------|
-| Pet Treats       | 44       |
-| Baby Wipes       | 41       |
-| Lotion           | 41       |
-| Dish Soap        | 39       |
-| Toilet Cleaner   | 38       |
-
-
+### **Output**
+TOP 5 produk yang menerima umpan balik positif
 | product         | positive_feedback |
 |------------------|----------|
 | Pet Treats       | 121      |
@@ -315,8 +314,28 @@ ORDER BY negative_feedback DESC
 | Vitamins         | 95       |
 | Dish Soap        | 94       |
 
-**Insight:**
+TOP 5 produk yang menerima umpan balik negatif
+| product         | negative_feedback |
+|------------------|----------|
+| Pet Treats       | 44       |
+| Baby Wipes       | 41       |
+| Lotion           | 41       |
+| Dish Soap        | 39       |
+| Toilet Cleaner   | 38       |
+
+**📊 Insight:**
 -
+
+## **✅ Rekomendasi**
+---
+1. Produk 
+* 🎯 **Fokus promosi** dan bundling di kategori **Personal Care** dan **Cold Drinks & Juices** untuk mendorong repeat order.
+* 💰 **Evaluasi margin** dan tingkatkan stok untuk kategori **Baby Care**, karena walau jumlah item lebih sedikit, revenue dan order tinggi.
+* 📈 **Perluas varian dan supplier** untuk **Fruits & Vegetables**, karena volume tinggi menunjukkan potensi untuk diversifikasi produk lokal.
+* 📦 Pertimbangkan **peningkatan logistik cold storage** untuk menunjang performa **Instant & Frozen Food**.
+* 📊 Lakukan analisis lanjut pada kategori **Grocery & Staples** untuk mengidentifikasi produk dengan performa terbaik guna dioptimalkan dalam kampanye penjualan.
+
+
 
 ---
 
