@@ -15,7 +15,6 @@ Repositori ini berisi kumpulan query SQL untuk menganalisis berbagai aspek bisni
 ### 📌 Tujuan
 Mendemonstrasikan bagaimana SQL digunakan untuk eksplorasi data dalam konteks bisnis nyata:
 - Mencari insight untuk pengambilan keputusan
-- Mengukur KPI penting
 - Menjawab pertanyaan-pertanyaan bisnis menggunakan data
 
 ## 📦 Kinerja produk dan kategori
@@ -99,10 +98,8 @@ TOP 5 produk dalam pendapatan terendah
 
 🔍 **Insights:**
 - 💊 **Produk kategori Pharmacy (Vitamins & Cough Syrup)** mendominasi pendapatan tertinggi meskipun jumlah item tidak paling banyak. Hal ini menunjukkan bahwa **harga per item tinggi dan permintaan stabil**.
-- 🧼 **Household Care** (Toilet Cleaner & Dish Soap) juga memberikan kontribusi signifikan dengan **kombinasi volume tinggi dan harga menengah**.
 - 🐶 **Pet Treats** menjadi produk dengan item terbanyak di antara top 5, menunjukkan permintaan kuat dari pemilik hewan peliharaan.
 - 🥬 Produk seperti **Spinach dan Lemonade** meskipun relevan dalam kebutuhan harian, memiliki **pendapatan rendah**, kemungkinan karena **harga per item rendah**.
-- 🍚 Produk staple seperti **Rice dan Cereal** berada di daftar pendapatan terendah, menunjukkan **perlu strategi volume atau margin lebih baik**.
 
 3. Brand terlaris dalam pendapatan
 ```sql
@@ -125,7 +122,7 @@ ORDER BY total_revenue DESC
 | Gole-Doshi     | 5,179,096 |
 
 🔍 **Insights:**
-- 🏆 **Karnik PLC** menjadi brand dengan pendapatan tertinggi, unggul lebih dari **900 ribu** dibanding posisi kedua — menunjukkan **dominasi pasar** atau keberhasilan strategi distribusi/produk.
+- 🏆 **Karnik PLC** menjadi brand dengan pendapatan tertinggi (6,5 juta+), unggul lebih dari **900 ribu** dibanding posisi kedua. Hal ini menunjukkan **dominasi pasar** atau keberhasilan strategi distribusi/produk.
 - 📈 Brand lainnya seperti **Mandal-Kar**, **Roy-Char**, dan **Sundaram Inc** memiliki pendapatan yang relatif berdekatan, menandakan persaingan yang ketat di bawah pemimpin pasar.
 - ⚖️ **Selisih antara brand ke-4 dan ke-5 sangat kecil** (hanya sekitar 4 ribu), menunjukkan performa serupa dan **potensi saling salip** di masa depan.
 
@@ -167,10 +164,7 @@ ORDER BY damaged_stock DESC
 
 🔍 **Insight:**
 - 🚨 **Dairy & Breakfast** memiliki jumlah *damaged stock* tertinggi (**8.890 unit**), kemungkinan besar karena **produk mudah rusak dan umur simpan pendek**.
-- 🧴 Kategori seperti **Household Care**, **Personal Care**, dan **Pharmacy** — yang umumnya tidak mudah rusak — juga memiliki jumlah kerusakan cukup tinggi, menandakan potensi **masalah penanganan/logistik**.
-- 🥬 **Fruits & Vegetables** juga tinggi dalam kerusakan, yang konsisten dengan sifat produk yang **mudah busuk dan sensitif suhu**.
-- ❄️ **Instant & Frozen Food** dan **Cold Drinks & Juices** memiliki tingkat kerusakan lebih rendah, kemungkinan karena penanganan dingin yang **lebih terstandarisasi**.
-- 👶 **Baby Care** memiliki jumlah kerusakan terendah — indikasi bahwa produk ini **ditangani dengan hati-hati atau dikemas lebih baik**.
+- 🧴 Kategori seperti **Household Care**, **Personal Care**, dan **Pharmacy** — yang umumnya tidak mudah rusak, memiliki jumlah kerusakan cukup tinggi, menandakan potensi adanya **masalah dalam penanganan/logistik**.
 
 ## 👥 Segmentasi pelanggan
 ---
@@ -192,7 +186,7 @@ GROUP BY customer_segment
 
 🔍 **Insight:**
 - ⚖️ Distribusi pelanggan cukup **merata di semua segmen**, dengan selisih kecil antara yang tertinggi (Regular: 639) dan terendah (Inactive: 600).
-- 🆕 Segmen **New** cukup besar (**628 pelanggan**), menunjukkan potensi pertumbuhan — namun keberlanjutannya tergantung pada retensi.
+- 🆕 Segmen **New** cukup besar (**628 pelanggan**), menunjukkan potensi pertumbuhan namun keberlanjutannya tergantung pada retensi.
 - 💤 **600 pelanggan Inactive** menunjukkan adanya kehilangan engagement, yang bisa berdampak pada pendapatan jangka panjang.
 - 💎 **Premium** memiliki jumlah hampir setara dengan Regular, menandakan **peluang upsell dan loyalitas** sudah mulai terbentuk.
 
@@ -228,8 +222,6 @@ ORDER BY total_revenue DESC
 🔍 **Insight:**
 - 💰 Semua pelanggan dalam daftar menghasilkan pendapatan di atas **Rp 880.000**, dengan **top spender** adalah **Odika Kannan** (Rp 1.053.339).
 - 🧍‍♀️ Terdapat **10 pelanggan loyal** yang secara kolektif memberikan kontribusi besar terhadap pendapatan — ini adalah segmen **High Value Customers (HVC)**.
-- 📧 Semua pelanggan memiliki email terdaftar → memungkinkan untuk **komunikasi langsung atau penawaran personal**.
-- 🔁 Pelanggan dengan total revenue berdekatan menunjukkan **konsistensi dalam pola belanja** — mereka cenderung melakukan pembelian berulang.
 
 ## 📈 Tren penjualan bulanan
 ---
@@ -270,9 +262,7 @@ ORDER BY new_customers DESC
 
 🔍 **Insight:**
 - 📈 **Maret 2024 (2024-03)** mencatat jumlah pelanggan baru tertinggi (47 pelanggan) → potensi ada kampanye/aktivitas promosi yang berhasil saat itu.
-- 🔄 **2024 secara keseluruhan menunjukkan tren akuisisi pelanggan yang konsisten**, terutama pada kuartal 1 dan 2.
 - 📉 **Bulan November 2024 (2024-11)** memiliki angka terendah (hanya 3 pelanggan baru) → kemungkinan disebabkan oleh **kurangnya aktivitas promosi atau faktor eksternal (musiman, persaingan, dll)**.
-- 📊 Tahun 2023 menunjukkan pertumbuhan fluktuatif, dengan puncaknya di **Desember 2023 (40 pelanggan)**, kemungkinan efek dari promo akhir tahun.
 
 ## 💬 Umpan balik pelanggan
 ---
@@ -303,7 +293,7 @@ GROUP BY sentiment
 
 🔍 **Insight:**
 - ✅ **Mayoritas ulasan pelanggan bersentimen positif (50.48%)**, menandakan bahwa lebih dari separuh pelanggan puas terhadap layanan/produk.
-- ⚖️ **Sentimen netral cukup signifikan (27.96%)**, menunjukkan adanya kelompok pelanggan yang merasa pengalaman mereka biasa saja—tidak terlalu buruk atau bagus.
+- ⚖️ **Sentimen netral cukup signifikan (27.96%)**, menunjukkan adanya kelompok pelanggan yang merasa pengalaman mereka biasa saja tidak terlalu buruk atau bagus.
 - ❗ **Sentimen negatif mencapai 21.56%**, cukup besar dan patut diperhatikan karena berpotensi memengaruhi reputasi dan loyalitas pelanggan.
 
 9. Product yang mendapatkan umpan balik positif dan umpan balik negatif
@@ -340,10 +330,9 @@ TOP 5 produk yang menerima umpan balik negatif
 | Toilet Cleaner   | 38       |
 
 🔍 **Insight:**
-* 🥇 **Pet Treats** mendominasi baik dalam **feedback positif (121)** maupun **negatif (44)** → produk ini sangat populer, tapi juga punya tantangan kualitas/pengalaman.
+* 🥇 **Pet Treats** mendominasi baik dalam **feedback positif (121)** maupun **negatif (44)**. Produk ini sangat populer, tapi juga punya tantangan kualitas/pengalaman terhadap pelanggan.
 * 🧼 **Toilet Cleaner** dan **Dish Soap** masuk dalam daftar **feedback positif dan negatif**, menandakan **inkonsistensi pengalaman pelanggan**.
 * 🤒 **Cough Syrup** dan **Vitamins** mendapatkan banyak feedback positif, menandakan kepercayaan terhadap produk kesehatan cukup tinggi.
-* 👶 **Baby Wipes** dan **Lotion** menonjol dalam feedback negatif → bisa mengindikasikan masalah sensitifitas atau kualitas produk perawatan pribadi/bayi.
 
 ## **✅ Rekomendasi**
 ---
