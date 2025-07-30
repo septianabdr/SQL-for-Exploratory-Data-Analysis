@@ -40,14 +40,14 @@ ORDER BY 2 DESC
 ### **Output:**
 TOP 5 kategori produk yang mendapatkan pendapatan tertinggi
 | category              | total_revenue | total_item |
-|-----------------------|---------------|--------------|
-| Fruits & Vegetables   | 53,955,458    | 966          |
-| Personal Care         | 35,018,297    | 887          |
-| Grocery & Staples     | 33,853,141    | 895          |
-| Cold Drinks & Juices  | 31,599,928    | 758          |
-| Instant & Frozen Food | 29,209,697    | 742          |
+|------------------------|---------------|-------------|
+| Dairy & Breakfast      | 58,707,763    | 1,114       |
+| Pharmacy               | 55,974,393    | 973         |
+| Fruits & Vegetables    | 53,955,458    | 966         |
+| Household Care         | 41,949,848    | 1,078       |
+| Pet Care               | 40,990,733    | 1,003       |
 
-TOP 5 kategori produk yang mendapatkan pendapatan tertinggi
+TOP 5 kategori produk yang mendapatkan pendapatan terendah
 | category               | total_revenue    | total_orders |
 |------------------------|------------|--------|
 | Instant & Frozen Food  | 29,209,697 | 742    |
@@ -56,12 +56,9 @@ TOP 5 kategori produk yang mendapatkan pendapatan tertinggi
 | Baby Care              | 34,822,718 | 655    |
 | Personal Care          | 35,018,297 | 887    |
 
-📊 **Insights:**
-- 🔝 **Personal Care** mencetak pendapatan tertinggi (Rp 35 juta+) dan volume item tinggi (**887 produk**), menunjukkan konsistensi dalam kontribusi terhadap pendapatan.
-- 🍼 **Baby Care** tidak termasuk dalam 5 besar dari sisi jumlah item, namun berhasil masuk top 5 dari sisi **pendapatan & jumlah pesanan**, menandakan **harga per produk relatif tinggi**.
-- 🥬 **Fruits & Vegetables** memiliki **pendapatan tertinggi secara keseluruhan** dan juga jumlah item terbanyak (**966 item**), menunjukkan **keragaman produk tinggi**, meskipun harga per item bisa jadi lebih rendah.
-- ❄️ **Instant & Frozen Food** meskipun jumlah item lebih sedikit, tetap memiliki performa tinggi dalam jumlah pesanan dan pendapatan, menunjukkan **permintaan stabil**.
-- 🥤 **Cold Drinks & Juices** konsisten di kedua peringkat — memperkuat bahwa produk ini adalah kebutuhan rutin dengan **rotasi cepat**.
+🔍 **Insights:**
+- 🥞 **Dairy & Breakfast** mencetak pendapatan tertinggi (Rp 58 juta+) dan volume item tertinggi (**1,114 produk**), menunjukkan konsistensi dalam kontribusi terhadap pendapatan.
+- ❄️ **Instant & Frozen Food** dan **Cold Drinks & Juices** mendapatkan pendapatan terendah (Rp 29 juta+) dari 11 kategori.
 
 2. Produk terlaris berdasarkan kuantitas penjualan
 ```sql
@@ -91,7 +88,7 @@ TOP 5 produk terlaris dalam pendapatan tertinggi
 | Cough Syrup    | Pharmacy         | 17,338,101     | 373         |
 | Dish Soap      | Household Care   | 15,969,544     | 397         |
 
-TOP 5 produk terlaris dalam pendapatan terendah
+TOP 5 produk dalam pendapatan terendah
 | product_name    | category        | total_revenue | total_item |
 |------------------|------------------------|-----------|--------|
 | Lemonade         | Cold Drinks & Juices   | 1,497,780 | 45     |
@@ -100,10 +97,12 @@ TOP 5 produk terlaris dalam pendapatan terendah
 | Spinach          | Fruits & Vegetables    | 2,523,360 | 40     |
 | Instant Noodles  | Instant & Frozen Food  | 3,280,164 | 73     |
 
-**📊 Insights:**
-- 
-- 
-
+🔍 **Insights:**
+- 💊 **Produk kategori Pharmacy (Vitamins & Cough Syrup)** mendominasi pendapatan tertinggi meskipun jumlah item tidak paling banyak. Hal ini menunjukkan bahwa **harga per item tinggi dan permintaan stabil**.
+- 🧼 **Household Care** (Toilet Cleaner & Dish Soap) juga memberikan kontribusi signifikan dengan **kombinasi volume tinggi dan harga menengah**.
+- 🐶 **Pet Treats** menjadi produk dengan item terbanyak di antara top 5, menunjukkan permintaan kuat dari pemilik hewan peliharaan.
+- 🥬 Produk seperti **Spinach dan Lemonade** meskipun relevan dalam kebutuhan harian, memiliki **pendapatan rendah**, kemungkinan karena **harga per item rendah**.
+- 🍚 Produk staple seperti **Rice dan Cereal** berada di daftar pendapatan terendah, menunjukkan **perlu strategi volume atau margin lebih baik**.
 
 3. Brand terlaris dalam pendapatan
 ```sql
@@ -125,8 +124,11 @@ ORDER BY total_revenue DESC
 | Sundaram Inc   | 5,183,035 |
 | Gole-Doshi     | 5,179,096 |
 
-**📊 Insights:**
-- 
+🔍 **Insights:**
+- 🏆 **Karnik PLC** menjadi brand dengan pendapatan tertinggi, unggul lebih dari **900 ribu** dibanding posisi kedua — menunjukkan **dominasi pasar** atau keberhasilan strategi distribusi/produk.
+- 📈 Brand lainnya seperti **Mandal-Kar**, **Roy-Char**, dan **Sundaram Inc** memiliki pendapatan yang relatif berdekatan, menandakan persaingan yang ketat di bawah pemimpin pasar.
+- ⚖️ **Selisih antara brand ke-4 dan ke-5 sangat kecil** (hanya sekitar 4 ribu), menunjukkan performa serupa dan **potensi saling salip** di masa depan.
+
 
 4. Stok barang yang mengalami kerusakan di gudang
 ```sql
@@ -163,8 +165,12 @@ ORDER BY damaged_stock DESC
 | Instant & Frozen Food    | 5,910       |
 | Baby Care                | 4,828       |
 
-**📊 Insight:**
-- 
+🔍 **Insight:**
+- 🚨 **Dairy & Breakfast** memiliki jumlah *damaged stock* tertinggi (**8.890 unit**), kemungkinan besar karena **produk mudah rusak dan umur simpan pendek**.
+- 🧴 Kategori seperti **Household Care**, **Personal Care**, dan **Pharmacy** — yang umumnya tidak mudah rusak — juga memiliki jumlah kerusakan cukup tinggi, menandakan potensi **masalah penanganan/logistik**.
+- 🥬 **Fruits & Vegetables** juga tinggi dalam kerusakan, yang konsisten dengan sifat produk yang **mudah busuk dan sensitif suhu**.
+- ❄️ **Instant & Frozen Food** dan **Cold Drinks & Juices** memiliki tingkat kerusakan lebih rendah, kemungkinan karena penanganan dingin yang **lebih terstandarisasi**.
+- 👶 **Baby Care** memiliki jumlah kerusakan terendah — indikasi bahwa produk ini **ditangani dengan hati-hati atau dikemas lebih baik**.
 
 ## 👥 Segmentasi pelanggan
 ---
@@ -184,9 +190,11 @@ GROUP BY customer_segment
 | Inactive         | 600   |
 | Regular          | 639   |
 
-**📊 Insight:**
-- 
-
+🔍 **Insight:**
+- ⚖️ Distribusi pelanggan cukup **merata di semua segmen**, dengan selisih kecil antara yang tertinggi (Regular: 639) dan terendah (Inactive: 600).
+- 🆕 Segmen **New** cukup besar (**628 pelanggan**), menunjukkan potensi pertumbuhan — namun keberlanjutannya tergantung pada retensi.
+- 💤 **600 pelanggan Inactive** menunjukkan adanya kehilangan engagement, yang bisa berdampak pada pendapatan jangka panjang.
+- 💎 **Premium** memiliki jumlah hampir setara dengan Regular, menandakan **peluang upsell dan loyalitas** sudah mulai terbentuk.
 
 6. Customer yang sering berbelanja
 ```sql
@@ -217,8 +225,11 @@ ORDER BY total_revenue DESC
 | 13760839 | Anvi Savant      | yashvi72@example.org               | 911,399        |
 | 12832151 | Ekavir Bhalla    | ksehgal@example.net                | 884,111        |
 
-**📊 Insight:**
-- 
+🔍 **Insight:**
+- 💰 Semua pelanggan dalam daftar menghasilkan pendapatan di atas **Rp 880.000**, dengan **top spender** adalah **Odika Kannan** (Rp 1.053.339).
+- 🧍‍♀️ Terdapat **10 pelanggan loyal** yang secara kolektif memberikan kontribusi besar terhadap pendapatan — ini adalah segmen **High Value Customers (HVC)**.
+- 📧 Semua pelanggan memiliki email terdaftar → memungkinkan untuk **komunikasi langsung atau penawaran personal**.
+- 🔁 Pelanggan dengan total revenue berdekatan menunjukkan **konsistensi dalam pola belanja** — mereka cenderung melakukan pembelian berulang.
 
 ## 📈 Tren penjualan bulanan
 ---
@@ -257,8 +268,11 @@ ORDER BY new_customers DESC
 | 2023-07   | 19             |
 | 2024-11   | 3              |
 
-**📊 Insight:**
-- 
+🔍 **Insight:**
+- 📈 **Maret 2024 (2024-03)** mencatat jumlah pelanggan baru tertinggi (47 pelanggan) → potensi ada kampanye/aktivitas promosi yang berhasil saat itu.
+- 🔄 **2024 secara keseluruhan menunjukkan tren akuisisi pelanggan yang konsisten**, terutama pada kuartal 1 dan 2.
+- 📉 **Bulan November 2024 (2024-11)** memiliki angka terendah (hanya 3 pelanggan baru) → kemungkinan disebabkan oleh **kurangnya aktivitas promosi atau faktor eksternal (musiman, persaingan, dll)**.
+- 📊 Tahun 2023 menunjukkan pertumbuhan fluktuatif, dengan puncaknya di **Desember 2023 (40 pelanggan)**, kemungkinan efek dari promo akhir tahun.
 
 ## 💬 Umpan balik pelanggan
 ---
@@ -287,8 +301,10 @@ GROUP BY sentiment
 | Neutral   | 27.96          |
 | Positive  | 50.48          |
 
-**📊 Insight:**
--
+🔍 **Insight:**
+- ✅ **Mayoritas ulasan pelanggan bersentimen positif (50.48%)**, menandakan bahwa lebih dari separuh pelanggan puas terhadap layanan/produk.
+- ⚖️ **Sentimen netral cukup signifikan (27.96%)**, menunjukkan adanya kelompok pelanggan yang merasa pengalaman mereka biasa saja—tidak terlalu buruk atau bagus.
+- ❗ **Sentimen negatif mencapai 21.56%**, cukup besar dan patut diperhatikan karena berpotensi memengaruhi reputasi dan loyalitas pelanggan.
 
 9. Product yang mendapatkan umpan balik positif dan umpan balik negatif
 ```sql
@@ -323,20 +339,73 @@ TOP 5 produk yang menerima umpan balik negatif
 | Dish Soap        | 39       |
 | Toilet Cleaner   | 38       |
 
-**📊 Insight:**
--
+🔍 **Insight:**
+* 🥇 **Pet Treats** mendominasi baik dalam **feedback positif (121)** maupun **negatif (44)** → produk ini sangat populer, tapi juga punya tantangan kualitas/pengalaman.
+* 🧼 **Toilet Cleaner** dan **Dish Soap** masuk dalam daftar **feedback positif dan negatif**, menandakan **inkonsistensi pengalaman pelanggan**.
+* 🤒 **Cough Syrup** dan **Vitamins** mendapatkan banyak feedback positif, menandakan kepercayaan terhadap produk kesehatan cukup tinggi.
+* 👶 **Baby Wipes** dan **Lotion** menonjol dalam feedback negatif → bisa mengindikasikan masalah sensitifitas atau kualitas produk perawatan pribadi/bayi.
 
 ## **✅ Rekomendasi**
 ---
-1. Produk 
+1. Kategori 
 * 🎯 **Fokus promosi** dan bundling di kategori **Personal Care** dan **Cold Drinks & Juices** untuk mendorong repeat order.
 * 💰 **Evaluasi margin** dan tingkatkan stok untuk kategori **Baby Care**, karena walau jumlah item lebih sedikit, revenue dan order tinggi.
 * 📈 **Perluas varian dan supplier** untuk **Fruits & Vegetables**, karena volume tinggi menunjukkan potensi untuk diversifikasi produk lokal.
 * 📦 Pertimbangkan **peningkatan logistik cold storage** untuk menunjang performa **Instant & Frozen Food**.
 * 📊 Lakukan analisis lanjut pada kategori **Grocery & Staples** untuk mengidentifikasi produk dengan performa terbaik guna dioptimalkan dalam kampanye penjualan.
 
+2. Produk
+* 💰 **Fokuskan promosi premium** untuk kategori **Pharmacy** karena kontribusi per produk tinggi; pertimbangkan juga bundling paket kesehatan.
+* 🧽 **Pertahankan stok dan iklankan produk kebutuhan rumah tangga** (Household Care), karena performanya baik dari segi volume dan nilai penjualan.
+* 🐾 Untuk **Pet Treats**, bisa diperluas ke produk pelengkap lain (mainan, perawatan) karena basis pelanggan sudah kuat.
+* 📉 **Evaluasi strategi penetapan harga atau bundling** untuk produk dengan pendapatan rendah (Lemonade, Cereal, Rice), agar nilai transaksi per pembelian meningkat.
+* 📦 **Spinach dan produk segar lainnya** dapat ditingkatkan melalui penawaran langganan atau diskon pembelian rutin untuk meningkatkan volume penjualan.
 
+3. Brand
+* 🧠 **Pertahankan keunggulan Karnik PLC** dengan memperkuat kampanye loyalitas dan promosi produk unggulan agar tetap jadi top performer.
+* 🚀 Untuk brand pesaing (Mandal-Kar, Roy-Char, Sundaram Inc), lakukan **differensiasi produk atau layanan tambahan** agar bisa menyalip brand dominan.
+* 📊 Lakukan **analisis mendalam per kategori produk per brand** untuk mengidentifikasi lini produk paling menguntungkan dari masing-masing brand.
+* 🔍 **Monitor brand Gole-Doshi dan Sundaram Inc** secara berkala karena posisinya sangat dekat — strategi kecil bisa berdampak besar pada peringkat mereka.
+
+4. Stok barang rusak
+* 🧊 **Perkuat rantai pendingin (cold chain)** dan SOP penyimpanan untuk **Dairy, Fruits & Vegetables** untuk mengurangi kerusakan akibat suhu dan kelembapan.
+* 📦 Audit dan pelatihan ulang staf logistik khususnya untuk **Household Care dan Personal Care**, karena produk non-perishable pun mengalami kerusakan tinggi.
+* 🔍 Lakukan **analisis kerusakan berdasarkan gudang atau jalur distribusi** untuk mengidentifikasi titik rawan.
+* 🚚 Evaluasi kembali metode pengemasan dan transportasi terutama untuk **produk sensitif**, agar dapat **mengurangi kerugian dan meningkatkan efisiensi operasional**.
+* ✅ Terapkan **best practice dari Baby Care** ke kategori lain karena terbukti lebih aman dari kerusakan.
+
+5. Pelanggan
+* 🔁 **Fokuskan upaya retensi** pada segmen **New**, misalnya lewat welcome offers, edukasi produk, atau email onboarding untuk mendorong mereka menjadi pelanggan aktif.
+* 🚨 Lakukan **aktivasi ulang pelanggan Inactive** dengan kampanye khusus seperti diskon comeback, rekomendasi produk personal, atau reminder keranjang belanja.
+* 🌟 Manfaatkan basis pelanggan **Premium** untuk program referral, testimoni, dan program loyalitas — karena mereka berpotensi menjadi brand ambassador.
+* 📈 Analisis lebih lanjut perilaku pelanggan **Regular** untuk mendorong transisi ke Premium dengan penawaran eksklusif atau langganan berbayar.
+
+6. TOP customer
+* 🎁 Buat **program loyalitas khusus** (reward tier atau diskon eksklusif) untuk pelanggan dengan total belanja tinggi guna menjaga retensi.
+* ✉️ Kirim **email marketing personalisasi** (produk rekomendasi, promo ulang tahun, notifikasi stok ulang) untuk memperkuat engagement.
+* 🛍️ Tawarkan **early access** ke produk baru atau diskon flash untuk pelanggan top spender sebagai bentuk apresiasi.
+* 📊 Lakukan **analisis lebih lanjut** pada perilaku belanja pelanggan ini (frekuensi, kategori favorit) untuk mendesain **kampanye upsell/cross-sell** yang efektif.
+
+7. New customer
+* 🗓️ **Analisis strategi pemasaran di Maret dan Desember** untuk mengidentifikasi apa yang berhasil dan bisa direplikasi di bulan lain.
+* 📢 Tingkatkan promosi menjelang bulan-bulan yang historisnya **rendah (seperti Juli dan November)** agar pertumbuhan lebih merata.
+* 🧪 Lakukan **A/B testing** pada saluran akuisisi pelanggan (iklan, referral, diskon onboarding) untuk menemukan metode paling efektif.
+* 🎯 Bangun **retensi funnel** dari pelanggan baru menjadi pelanggan aktif/loyal, terutama di bulan dengan pertumbuhan tinggi.
+* 📅 Jadwalkan kampanye besar di kuartal awal dan akhir tahun untuk **mengoptimalkan momentum tren pertumbuhan** yang sudah terbukti.
+
+8. Umpan balik
+* 📌 **Analisis lebih lanjut isi ulasan negatif** untuk mengidentifikasi masalah utama (misalnya: pengiriman, kualitas produk, layanan).
+* ✨ Tingkatkan kualitas di area yang sering disebutkan dalam ulasan netral agar bisa diubah menjadi ulasan positif.
+* 💬 **Respon aktif dan cepat terhadap ulasan negatif** di berbagai platform agar pelanggan merasa didengar dan dihargai.
+* 🔍 Lakukan segmentasi sentimen berdasarkan kategori produk atau wilayah untuk strategi perbaikan yang lebih terarah.
+* 🎉 Promosikan ulasan positif sebagai **bukti sosial (social proof)** di media sosial dan kampanye pemasaran.
+
+9. Barang
+* 🔍 **Audit kualitas untuk produk dengan feedback tinggi (positif & negatif)** seperti Pet Treats, Dish Soap, dan Toilet Cleaner guna memastikan konsistensi.
+* 📣 Promosikan produk dengan dominasi **feedback positif** (Cough Syrup, Vitamins) sebagai produk unggulan atau best-rated.
+* 🚨 Lakukan evaluasi menyeluruh pada produk dengan **feedback negatif tinggi** (Baby Wipes, Lotion), termasuk pengemasan, bahan, dan instruksi penggunaan.
+* 🗣️ Kumpulkan dan analisis **feedback lebih dalam dari pelanggan** (review teks) untuk mencari akar penyebab ketidakpuasan.
+* 📦 Gunakan hasil analisis ini untuk perbaikan produk, pelatihan staf CS, atau edukasi pelanggan tentang cara penggunaan produk tertentu.
 
 ---
-
 Feel free to fork, clone, or contribute! 🚀
