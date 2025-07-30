@@ -19,7 +19,7 @@ Mendemonstrasikan bagaimana SQL digunakan untuk eksplorasi data dalam konteks bi
 
 ## 📦 Kinerja produk dan kategori
 ---
-1. Menampilkan kategori produk yang menghasilkan pendapatan tertinggi dan terendah
+**1. Menampilkan kategori produk yang menghasilkan pendapatan tertinggi dan terendah**
 ```sql
 WITH sales_category AS(
     SELECT
@@ -59,7 +59,7 @@ TOP 5 kategori produk yang mendapatkan pendapatan terendah
 - 🥞 **Dairy & Breakfast** mencetak pendapatan tertinggi (Rp 58 juta+) dan volume item tertinggi (**1,114 produk**), menunjukkan konsistensi dalam kontribusi terhadap pendapatan.
 - ❄️ **Instant & Frozen Food** dan **Cold Drinks & Juices** mendapatkan pendapatan terendah (Rp 29 juta+) dari 11 kategori.
 
-2. Produk terlaris berdasarkan kuantitas penjualan
+**2. Produk terlaris berdasarkan kuantitas penjualan**
 ```sql
 WITH sales_product AS(
     SELECT
@@ -101,7 +101,7 @@ TOP 5 produk dalam pendapatan terendah
 - 🐶 **Pet Treats** menjadi produk dengan item terbanyak di antara top 5, menunjukkan permintaan kuat dari pemilik hewan peliharaan.
 - 🥬 Produk seperti **Spinach dan Lemonade** meskipun relevan dalam kebutuhan harian, memiliki **pendapatan rendah**, kemungkinan karena **harga per item rendah**.
 
-3. Brand terlaris dalam pendapatan
+**3. Brand terlaris dalam pendapatan**
 ```sql
 SELECT TOP 5
     p.brand,
@@ -127,7 +127,7 @@ ORDER BY total_revenue DESC
 - ⚖️ **Selisih antara brand ke-4 dan ke-5 sangat kecil** (hanya sekitar 4 ribu), menunjukkan performa serupa dan **potensi saling salip** di masa depan.
 
 
-4. Stok barang yang mengalami kerusakan di gudang
+**4. Stok barang yang mengalami kerusakan di gudang**
 ```sql
 WITH stock_product AS(
 SELECT 
@@ -168,7 +168,7 @@ ORDER BY damaged_stock DESC
 
 ## 👥 Segmentasi pelanggan
 ---
-5. Jumlah customer berdasarkan segmentasi pelanggan
+**5. Jumlah customer berdasarkan segmentasi pelanggan**
 ```sql
 SELECT 
     customer_segment,
@@ -190,7 +190,7 @@ GROUP BY customer_segment
 - 💤 **600 pelanggan Inactive** menunjukkan adanya kehilangan engagement, yang bisa berdampak pada pendapatan jangka panjang.
 - 💎 **Premium** memiliki jumlah hampir setara dengan Regular, menandakan **peluang upsell dan loyalitas** sudah mulai terbentuk.
 
-6. Customer yang sering berbelanja
+**6. Customer yang sering berbelanja**
 ```sql
 SELECT TOP 10
     c.customer_id,
@@ -225,7 +225,7 @@ ORDER BY total_revenue DESC
 
 ## 📈 Tren penjualan bulanan
 ---
-7. Customer baru dalam setiap bulan
+**7. Customer baru dalam setiap bulan**
 ```sql
 SELECT 
     FORMAT(registration_date, 'yyyy-MM') AS month,
@@ -266,7 +266,7 @@ ORDER BY new_customers DESC
 
 ## 💬 Umpan balik pelanggan
 ---
-8. Analisis berdasarkan sentimen pelanggan
+**8. Analisis berdasarkan sentimen pelanggan**
 ```sql
 WITH rating_new AS(
     SELECT 
@@ -296,7 +296,7 @@ GROUP BY sentiment
 - ⚖️ **Sentimen netral cukup signifikan (27.96%)**, menunjukkan adanya kelompok pelanggan yang merasa pengalaman mereka biasa saja tidak terlalu buruk atau bagus.
 - ❗ **Sentimen negatif mencapai 21.56%**, cukup besar dan patut diperhatikan karena berpotensi memengaruhi reputasi dan loyalitas pelanggan.
 
-9. Product yang mendapatkan umpan balik positif dan umpan balik negatif
+**9. Product yang mendapatkan umpan balik positif dan umpan balik negatif**
 ```sql
 SELECT TOP 5
     p.product_name,
@@ -336,65 +336,48 @@ TOP 5 produk yang menerima umpan balik negatif
 
 ## **✅ Rekomendasi**
 ---
-1. Kategori 
-* 🎯 **Fokus promosi** dan bundling di kategori **Personal Care** dan **Cold Drinks & Juices** untuk mendorong repeat order.
-* 💰 **Evaluasi margin** dan tingkatkan stok untuk kategori **Baby Care**, karena walau jumlah item lebih sedikit, revenue dan order tinggi.
-* 📈 **Perluas varian dan supplier** untuk **Fruits & Vegetables**, karena volume tinggi menunjukkan potensi untuk diversifikasi produk lokal.
+**1. Kategori produk yang menghasilkan pendapatan tertinggi dan terendah**
+* 🎯 **Fokus promosi** dan bundling di kategori **Dairy & Breakfast** untuk mendorong repeat order.
+* 💰 **Evaluasi strategi harga** dan tingkatkan stok untuk kategori **Instant & Frozen Food**, agar dapat meningkatkan kontribusi pendapatan.
 * 📦 Pertimbangkan **peningkatan logistik cold storage** untuk menunjang performa **Instant & Frozen Food**.
-* 📊 Lakukan analisis lanjut pada kategori **Grocery & Staples** untuk mengidentifikasi produk dengan performa terbaik guna dioptimalkan dalam kampanye penjualan.
 
-2. Produk
-* 💰 **Fokuskan promosi premium** untuk kategori **Pharmacy** karena kontribusi per produk tinggi; pertimbangkan juga bundling paket kesehatan.
-* 🧽 **Pertahankan stok dan iklankan produk kebutuhan rumah tangga** (Household Care), karena performanya baik dari segi volume dan nilai penjualan.
+**2. Produk terlaris berdasarkan kuantitas penjualan**
+* 💰 **Fokuskan promosi premium** untuk kategori **Pharmacy** karena kontribusi per produk tinggi dan bisa dipertimbangkan juga untuk membuat bundling paket kesehatan..
 * 🐾 Untuk **Pet Treats**, bisa diperluas ke produk pelengkap lain (mainan, perawatan) karena basis pelanggan sudah kuat.
 * 📉 **Evaluasi strategi penetapan harga atau bundling** untuk produk dengan pendapatan rendah (Lemonade, Cereal, Rice), agar nilai transaksi per pembelian meningkat.
 * 📦 **Spinach dan produk segar lainnya** dapat ditingkatkan melalui penawaran langganan atau diskon pembelian rutin untuk meningkatkan volume penjualan.
 
-3. Brand
+**3. Brand terlaris dalam pendapatan**
 * 🧠 **Pertahankan keunggulan Karnik PLC** dengan memperkuat kampanye loyalitas dan promosi produk unggulan agar tetap jadi top performer.
 * 🚀 Untuk brand pesaing (Mandal-Kar, Roy-Char, Sundaram Inc), lakukan **differensiasi produk atau layanan tambahan** agar bisa menyalip brand dominan.
-* 📊 Lakukan **analisis mendalam per kategori produk per brand** untuk mengidentifikasi lini produk paling menguntungkan dari masing-masing brand.
-* 🔍 **Monitor brand Gole-Doshi dan Sundaram Inc** secara berkala karena posisinya sangat dekat — strategi kecil bisa berdampak besar pada peringkat mereka.
+* 🔍 **Monitor brand Gole-Doshi dan Sundaram Inc** secara berkala karena posisinya sangat dekat dengan melakukan strategi kecil bisa berdampak besar pada pendapatan mereka.
 
-4. Stok barang rusak
+**4. Stok barang yang mengalami kerusakan di gudang**
 * 🧊 **Perkuat rantai pendingin (cold chain)** dan SOP penyimpanan untuk **Dairy, Fruits & Vegetables** untuk mengurangi kerusakan akibat suhu dan kelembapan.
 * 📦 Audit dan pelatihan ulang staf logistik khususnya untuk **Household Care dan Personal Care**, karena produk non-perishable pun mengalami kerusakan tinggi.
 * 🔍 Lakukan **analisis kerusakan berdasarkan gudang atau jalur distribusi** untuk mengidentifikasi titik rawan.
-* 🚚 Evaluasi kembali metode pengemasan dan transportasi terutama untuk **produk sensitif**, agar dapat **mengurangi kerugian dan meningkatkan efisiensi operasional**.
-* ✅ Terapkan **best practice dari Baby Care** ke kategori lain karena terbukti lebih aman dari kerusakan.
 
-5. Pelanggan
+**5. Jumlah customer berdasarkan segmentasi pelanggan**
 * 🔁 **Fokuskan upaya retensi** pada segmen **New**, misalnya lewat welcome offers, edukasi produk, atau email onboarding untuk mendorong mereka menjadi pelanggan aktif.
 * 🚨 Lakukan **aktivasi ulang pelanggan Inactive** dengan kampanye khusus seperti diskon comeback, rekomendasi produk personal, atau reminder keranjang belanja.
-* 🌟 Manfaatkan basis pelanggan **Premium** untuk program referral, testimoni, dan program loyalitas — karena mereka berpotensi menjadi brand ambassador.
-* 📈 Analisis lebih lanjut perilaku pelanggan **Regular** untuk mendorong transisi ke Premium dengan penawaran eksklusif atau langganan berbayar.
 
-6. TOP customer
+**6. TOP customer yang sering berbelanja**
 * 🎁 Buat **program loyalitas khusus** (reward tier atau diskon eksklusif) untuk pelanggan dengan total belanja tinggi guna menjaga retensi.
 * ✉️ Kirim **email marketing personalisasi** (produk rekomendasi, promo ulang tahun, notifikasi stok ulang) untuk memperkuat engagement.
 * 🛍️ Tawarkan **early access** ke produk baru atau diskon flash untuk pelanggan top spender sebagai bentuk apresiasi.
-* 📊 Lakukan **analisis lebih lanjut** pada perilaku belanja pelanggan ini (frekuensi, kategori favorit) untuk mendesain **kampanye upsell/cross-sell** yang efektif.
 
-7. New customer
-* 🗓️ **Analisis strategi pemasaran di Maret dan Desember** untuk mengidentifikasi apa yang berhasil dan bisa direplikasi di bulan lain.
+**7. Customer baru dalam setiap bulan**
 * 📢 Tingkatkan promosi menjelang bulan-bulan yang historisnya **rendah (seperti Juli dan November)** agar pertumbuhan lebih merata.
-* 🧪 Lakukan **A/B testing** pada saluran akuisisi pelanggan (iklan, referral, diskon onboarding) untuk menemukan metode paling efektif.
 * 🎯 Bangun **retensi funnel** dari pelanggan baru menjadi pelanggan aktif/loyal, terutama di bulan dengan pertumbuhan tinggi.
-* 📅 Jadwalkan kampanye besar di kuartal awal dan akhir tahun untuk **mengoptimalkan momentum tren pertumbuhan** yang sudah terbukti.
 
-8. Umpan balik
-* 📌 **Analisis lebih lanjut isi ulasan negatif** untuk mengidentifikasi masalah utama (misalnya: pengiriman, kualitas produk, layanan).
+**8. Umpan balik berdasarkan sentimen pelanggan**
 * ✨ Tingkatkan kualitas di area yang sering disebutkan dalam ulasan netral agar bisa diubah menjadi ulasan positif.
 * 💬 **Respon aktif dan cepat terhadap ulasan negatif** di berbagai platform agar pelanggan merasa didengar dan dihargai.
-* 🔍 Lakukan segmentasi sentimen berdasarkan kategori produk atau wilayah untuk strategi perbaikan yang lebih terarah.
 * 🎉 Promosikan ulasan positif sebagai **bukti sosial (social proof)** di media sosial dan kampanye pemasaran.
 
-9. Barang
-* 🔍 **Audit kualitas untuk produk dengan feedback tinggi (positif & negatif)** seperti Pet Treats, Dish Soap, dan Toilet Cleaner guna memastikan konsistensi.
+**9. Produk yang mendapatkan umpan balik positif dan umpan balik negatif**
 * 📣 Promosikan produk dengan dominasi **feedback positif** (Cough Syrup, Vitamins) sebagai produk unggulan atau best-rated.
 * 🚨 Lakukan evaluasi menyeluruh pada produk dengan **feedback negatif tinggi** (Baby Wipes, Lotion), termasuk pengemasan, bahan, dan instruksi penggunaan.
-* 🗣️ Kumpulkan dan analisis **feedback lebih dalam dari pelanggan** (review teks) untuk mencari akar penyebab ketidakpuasan.
-* 📦 Gunakan hasil analisis ini untuk perbaikan produk, pelatihan staf CS, atau edukasi pelanggan tentang cara penggunaan produk tertentu.
 
 ---
 Feel free to fork, clone, or contribute! 🚀
